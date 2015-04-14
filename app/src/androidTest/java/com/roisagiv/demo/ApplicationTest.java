@@ -1,4 +1,4 @@
-package demo.roisagiv.com;
+package com.roisagiv.demo;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
