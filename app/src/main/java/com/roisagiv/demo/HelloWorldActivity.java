@@ -1,15 +1,26 @@
 package com.roisagiv.demo;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
-public class HelloWorldActivity extends ActionBarActivity {
+public class HelloWorldActivity extends ActionBarActivity implements View.OnClickListener {
+
+  private EditText nameEditText;
+  private TextView helloNameTextView;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_hello_world);
+
+    nameEditText = (EditText) findViewById(R.id.edittext_name);
+    helloNameTextView = (TextView) findViewById(R.id.textview_hello_name);
+    View clickMeButton = findViewById(R.id.button_click_me);
+    clickMeButton.setOnClickListener(this);
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -30,5 +41,10 @@ public class HelloWorldActivity extends ActionBarActivity {
     }
 
     return super.onOptionsItemSelected(item);
+  }
+
+  @Override public void onClick(View v) {
+    String name = nameEditText.getText().toString();
+    helloNameTextView.setText(String.format("Hello %s!", name));
   }
 }
