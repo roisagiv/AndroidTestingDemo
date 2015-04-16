@@ -13,7 +13,8 @@ public class LocalFileUsersAPIClientTest extends InstrumentationTestCase {
    */
   public void test_getUsers_should_return_10_users() {
     // arrange
-    LocalFileUsersAPIClient usersAPIClient = new LocalFileUsersAPIClient();
+    LocalFileUsersAPIClient usersAPIClient =
+        new LocalFileUsersAPIClient(getInstrumentation().getTargetContext().getAssets());
 
     // act
     List<User> users = usersAPIClient.getUsers();
@@ -27,7 +28,8 @@ public class LocalFileUsersAPIClientTest extends InstrumentationTestCase {
    */
   public void test_getUsers_should_parse_user_name() {
     // arrange
-    LocalFileUsersAPIClient usersAPIClient = new LocalFileUsersAPIClient();
+    LocalFileUsersAPIClient usersAPIClient =
+        new LocalFileUsersAPIClient(getInstrumentation().getTargetContext().getAssets());
 
     // act
     List<User> users = usersAPIClient.getUsers();
@@ -42,7 +44,8 @@ public class LocalFileUsersAPIClientTest extends InstrumentationTestCase {
    */
   public void test_getUsers_should_parse_user_email() {
     // arrange
-    LocalFileUsersAPIClient usersAPIClient = new LocalFileUsersAPIClient();
+    LocalFileUsersAPIClient usersAPIClient =
+        new LocalFileUsersAPIClient(getInstrumentation().getTargetContext().getAssets());
 
     // act
     List<User> users = usersAPIClient.getUsers();
@@ -57,7 +60,8 @@ public class LocalFileUsersAPIClientTest extends InstrumentationTestCase {
    */
   public void test_getUsers_should_parse_user_image_url() {
     // arrange
-    LocalFileUsersAPIClient usersAPIClient = new LocalFileUsersAPIClient();
+    LocalFileUsersAPIClient usersAPIClient =
+        new LocalFileUsersAPIClient(getInstrumentation().getTargetContext().getAssets());
 
     // act
     List<User> users = usersAPIClient.getUsers();
