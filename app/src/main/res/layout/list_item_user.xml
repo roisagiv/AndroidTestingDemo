@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="?android:listPreferredItemHeight">
+
+  <ImageView
+    android:id="@+id/imageview_user_image"
+    android:layout_width="?android:listPreferredItemHeight"
+    android:layout_height="match_parent"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_centerVertical="true" />
+
+  <View
+    android:id="@+id/view_layout_anchor"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_centerVertical="true"
+    android:layout_margin="2dp"
+    android:layout_toEndOf="@id/imageview_user_image"
+    android:layout_toRightOf="@id/imageview_user_image" />
+
+  <TextView
+    android:id="@+id/textview_user_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_above="@id/view_layout_anchor"
+    android:layout_toEndOf="@id/imageview_user_image"
+    android:layout_toRightOf="@id/imageview_user_image"
+    android:textAppearance="?android:textAppearanceMedium"
+    tools:text="First name last name" />
+
+  <TextView
+    android:id="@+id/textview_user_email"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/view_layout_anchor"
+    android:layout_toEndOf="@id/imageview_user_image"
+    android:layout_toRightOf="@id/imageview_user_image"
+    android:textAppearance="?android:textAppearanceSmall"
+    tools:text="first@last.com" />
+
+</RelativeLayout>
