@@ -18,6 +18,7 @@ public class ListUsersRecyclerViewAdapterTest extends AndroidTestCase {
     // arrange
     List<User> users = Collections.nCopies(6, new User());
     ListUsersRecyclerViewAdapter adapter = new ListUsersRecyclerViewAdapter();
+    adapter.setUsers(users);
 
     // act
     int itemCount = adapter.getItemCount();
