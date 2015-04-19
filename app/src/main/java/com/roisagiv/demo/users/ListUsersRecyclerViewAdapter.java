@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.roisagiv.demo.R;
+import com.roisagiv.demo.utils.ImageDownloader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,10 @@ public class ListUsersRecyclerViewAdapter
     extends RecyclerView.Adapter<ListUsersRecyclerViewAdapter.UserViewHolder> {
 
   private final List<User> users;
+  private final ImageDownloader imageDownloader;
 
-  public ListUsersRecyclerViewAdapter() {
+  public ListUsersRecyclerViewAdapter(ImageDownloader imageDownloader) {
+    this.imageDownloader = imageDownloader;
     users = new ArrayList<>();
   }
 

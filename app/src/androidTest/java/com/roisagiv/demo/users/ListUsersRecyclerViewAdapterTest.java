@@ -4,8 +4,10 @@ import android.support.v7.widget.RecyclerView;
 import android.test.AndroidTestCase;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.roisagiv.demo.R;
+import com.roisagiv.demo.utils.ImageDownloader;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -20,7 +22,7 @@ public class ListUsersRecyclerViewAdapterTest extends AndroidTestCase {
   public void test_getItemCount_should_return_size_of_users_array() {
     // arrange
     List<User> users = Collections.nCopies(6, new User());
-    ListUsersRecyclerViewAdapter adapter = new ListUsersRecyclerViewAdapter();
+    ListUsersRecyclerViewAdapter adapter = new ListUsersRecyclerViewAdapter(null);
     adapter.setUsers(users);
 
     // act
@@ -35,7 +37,7 @@ public class ListUsersRecyclerViewAdapterTest extends AndroidTestCase {
    */
   public void test_onCreateViewHolder_should_inflate_view_and_create_new_viewHolder() {
     // arrange
-    ListUsersRecyclerViewAdapter adapter = new ListUsersRecyclerViewAdapter();
+    ListUsersRecyclerViewAdapter adapter = new ListUsersRecyclerViewAdapter(null);
 
     // act
     FrameLayout parent = new FrameLayout(getContext());
@@ -58,7 +60,9 @@ public class ListUsersRecyclerViewAdapterTest extends AndroidTestCase {
     userUnderTest.setName("name 1");
     userUnderTest.setEmail("email@email.com");
 
-    ListUsersRecyclerViewAdapter adapter = new ListUsersRecyclerViewAdapter();
+    TestableImageDownloader imageDownloader = new TestableImageDownloader();
+
+    ListUsersRecyclerViewAdapter adapter = new ListUsersRecyclerViewAdapter(imageDownloader);
     adapter.setUsers(users);
 
     FrameLayout parent = new FrameLayout(getContext());
@@ -74,7 +78,10 @@ public class ListUsersRecyclerViewAdapterTest extends AndroidTestCase {
     TextView nameTextView = (TextView) viewHolder.itemView.findViewById(R.id.textview_user_name);
     assertEquals(userUnderTest.getName(), nameTextView.getText());
 
-    // TODO: test userUnderTest.getImageUrl
+    ImageView userImageView =
+        (ImageView) viewHolder.itemView.findViewById(R.id.imageview_user_image);
+    assertEquals(userImageView, imageDownloader.imageView);
+    assertEquals(userUnderTest.getImageUrl(), imageDownloader.url);
   }
 
   /**
@@ -83,7 +90,7 @@ public class ListUsersRecyclerViewAdapterTest extends AndroidTestCase {
   public void test_setUsers_should_call_notifyDataSetChanged() {
     // arrange
     List<User> users = Collections.nCopies(6, new User());
-    ListUsersRecyclerViewAdapter adapter = new ListUsersRecyclerViewAdapter();
+    ListUsersRecyclerViewAdapter adapter = new ListUsersRecyclerViewAdapter(null);
 
     TestableAdapterDataObserver dataObserver = new TestableAdapterDataObserver();
     adapter.registerAdapterDataObserver(dataObserver);
@@ -107,6 +114,21 @@ public class ListUsersRecyclerViewAdapterTest extends AndroidTestCase {
       super.onChanged();
 
       onChangedInvoked = true;
+    }
+  }
+
+  /**
+   *
+   */
+  private static class TestableImageDownloader implements ImageDownloader {
+
+    private String url = null;
+    private ImageView imageView = null;
+
+    @Override public void setImageUrlInImageView(String url, ImageView imageView) {
+
+      this.url = url;
+      this.imageView = imageView;
     }
   }
 }
