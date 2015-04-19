@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.roisagiv.demo.R;
 import com.roisagiv.demo.utils.ImageDownloader;
@@ -48,6 +49,8 @@ public class ListUsersRecyclerViewAdapter
 
     holder.userNameTextView.setText(user.getName());
     holder.userEmailTextView.setText(user.getEmail());
+
+    imageDownloader.setImageUrlInImageView(user.getImageUrl(), holder.userImageView);
   }
 
   /**
@@ -61,12 +64,14 @@ public class ListUsersRecyclerViewAdapter
 
     private final TextView userNameTextView;
     private final TextView userEmailTextView;
+    private final ImageView userImageView;
 
     public UserViewHolder(View itemView) {
       super(itemView);
 
       userNameTextView = (TextView) itemView.findViewById(R.id.textview_user_name);
       userEmailTextView = (TextView) itemView.findViewById(R.id.textview_user_email);
+      userImageView = (ImageView) itemView.findViewById(R.id.imageview_user_image);
     }
   }
 }
