@@ -9,11 +9,14 @@ import java.util.List;
  */
 public class GetUsersLoader extends AsyncTaskLoader2<List<User>> {
 
-  public GetUsersLoader(Context context) {
+  private final UsersAPIClient usersAPIClient;
+
+  public GetUsersLoader(Context context, UsersAPIClient usersAPIClient) {
     super(context);
+    this.usersAPIClient = usersAPIClient;
   }
 
   @Override public List<User> loadInBackground() {
-    return null;
+    return usersAPIClient.getUsers();
   }
 }

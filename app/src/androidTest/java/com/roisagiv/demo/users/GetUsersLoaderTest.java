@@ -11,7 +11,7 @@ public class GetUsersLoaderTest extends AndroidTestCase {
   public void test_loadInBackground_should_call_UsersAPIClient() {
     // arrange
     TestableUsersAPIClient usersAPIClient = new TestableUsersAPIClient();
-    GetUsersLoader loader = new GetUsersLoader(getContext());
+    GetUsersLoader loader = new GetUsersLoader(getContext(), usersAPIClient);
 
     // act
     loader.loadInBackground();
