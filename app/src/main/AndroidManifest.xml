@@ -20,6 +20,10 @@
             android:name=".HelloWorldActivity"
             android:label="@string/title_activity_hello_world" >
         </activity>
+        <activity
+            android:name=".users.UsersListActivity"
+            android:label="@string/title_activity_users_list" >
+        </activity>
     </application>
 
 </manifest>
